@@ -13,10 +13,13 @@ import { CtaBanner } from '@/components/cta-banner';
 import { FaqAccordion } from '@/components/faq-accordion';
 import { FadeIn, Stagger, StaggerItem } from '@/components/motion';
 import { PageHero } from '@/components/page-hero';
+import { ProcessSteps } from '@/components/process-steps';
 import { Reviews } from '@/components/reviews';
 import { Section, SectionHeading } from '@/components/section';
 import { ServiceCard } from '@/components/service-card';
 import { ServiceTicker } from '@/components/service-ticker';
+import { StatsBanner } from '@/components/stats-banner';
+import { TrustBar } from '@/components/trust-bar';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -61,40 +64,35 @@ const values = [
 export default function HomePage() {
   return (
     <>
-      <div className="border-b border-primary/30 bg-primary/15">
-        <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-3 px-4 py-3 text-sm md:flex-row md:items-center md:px-6">
-          <p className="font-medium">
-            Storm damage? We inspect, document, and repair roofs across Humble
-            and north Houston.
-          </p>
-          <Button asChild variant="outline" size="sm" className="h-8 shrink-0">
-            <Link href="/services/roof-repair">See storm repair</Link>
-          </Button>
-        </div>
-      </div>
-
       <PageHero
         eyebrow={`${site.region} · Since ${site.founded}`}
         title="A remodeling contractor you can actually reach."
         description="Roofing, kitchens, baths, siding, paint, and decks — licensed, insured, and bonded. Jose Hernandez and crew have been doing the work in Humble since 2016."
         image="/images/Home-hero.webp"
         imageAlt="Houston-area home exterior"
+        size="lg"
       >
-        <Button asChild className="h-11 px-5">
-          <Link href="/contact">Let’s talk</Link>
+        <Button asChild className="h-12 px-6 text-base font-semibold">
+          <Link href="/contact">Get a free estimate</Link>
         </Button>
-        <Button asChild variant="outline" className="h-11 px-5 bg-black/30">
+        <Button
+          asChild
+          variant="outline"
+          className="h-12 px-6 bg-black/30 text-base font-medium"
+        >
           <a href={site.phoneHref}>
-            <PhoneIcon data-icon="inline-start" />
+            <PhoneIcon className="size-4" />
             {site.phone}
           </a>
         </Button>
       </PageHero>
 
+      <TrustBar />
       <ServiceTicker />
 
+      {/* About / story */}
       <Section>
-        <div className="grid items-center gap-10 lg:grid-cols-2">
+        <div className="grid items-center gap-12 lg:grid-cols-2">
           <div>
             <SectionHeading
               eyebrow="Since 2016"
@@ -109,7 +107,7 @@ export default function HomePage() {
           </div>
           <FadeIn
             delay={0.12}
-            className="relative aspect-4/3 overflow-hidden rounded-xl ring-1 ring-foreground/10"
+            className="relative aspect-4/3 overflow-hidden rounded-2xl ring-1 ring-foreground/10"
           >
             <Image
               src="/images/home-media.webp"
@@ -122,7 +120,11 @@ export default function HomePage() {
         </div>
       </Section>
 
-      <Section className="bg-card/40">
+      {/* How it works */}
+      <ProcessSteps />
+
+      {/* Values */}
+      <Section>
         <SectionHeading
           eyebrow="How we work"
           title="Licensed, insured, and bonded — and still a small crew"
@@ -133,10 +135,12 @@ export default function HomePage() {
             <StaggerItem key={value.title}>
               <Card className="h-full">
                 <CardHeader>
-                  <value.icon className="mb-2 size-5 text-primary" />
-                  <CardTitle>{value.title}</CardTitle>
+                  <div className="mb-3 flex size-10 items-center justify-center rounded-full bg-primary/10">
+                    <value.icon className="size-5 text-primary" />
+                  </div>
+                  <CardTitle className="text-base">{value.title}</CardTitle>
                 </CardHeader>
-                <CardContent className="text-muted-foreground">
+                <CardContent className="text-sm leading-relaxed text-muted-foreground">
                   {value.description}
                 </CardContent>
               </Card>
@@ -145,13 +149,14 @@ export default function HomePage() {
         </Stagger>
       </Section>
 
-      <Section>
+      {/* Services */}
+      <Section className="bg-card/40">
         <SectionHeading
           eyebrow="Services"
           title="Roofing, remodeling, and the work around it"
           description="From storm repairs to kitchens and outdoor living — one team for the whole job."
         />
-        <Stagger className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <Stagger className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((service) => (
             <StaggerItem key={service.slug}>
               <ServiceCard service={service} />
@@ -160,8 +165,13 @@ export default function HomePage() {
         </Stagger>
       </Section>
 
+      {/* Reviews */}
       <Reviews />
 
+      {/* Stats */}
+      <StatsBanner />
+
+      {/* Areas */}
       <Section>
         <div className="grid items-center gap-10 lg:grid-cols-2">
           <div>
@@ -175,7 +185,10 @@ export default function HomePage() {
                 area.slug ? (
                   <StaggerItem key={area.name}>
                     <Link href={`/areas/${area.slug}`}>
-                      <Badge variant="outline" className="hover:bg-muted">
+                      <Badge
+                        variant="outline"
+                        className="hover:bg-muted cursor-pointer transition-colors"
+                      >
                         {area.name}
                       </Badge>
                     </Link>
@@ -190,7 +203,7 @@ export default function HomePage() {
           </div>
           <FadeIn
             delay={0.1}
-            className="relative aspect-square overflow-hidden rounded-xl ring-1 ring-foreground/10"
+            className="relative aspect-square overflow-hidden rounded-2xl ring-1 ring-foreground/10"
           >
             <Image
               src="/images/map.webp"

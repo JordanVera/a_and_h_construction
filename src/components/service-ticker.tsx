@@ -80,16 +80,12 @@ export function ServiceTicker({ className }: { className?: string }) {
   return (
     <section
       className={cn(
-        'relative overflow-hidden border-y border-border/60 bg-background/40 py-10 md:py-12',
+        'relative overflow-hidden border-y border-border/60 bg-background/40 py-3',
         className,
       )}
     >
       <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-20 bg-linear-to-r from-background via-background/80 to-transparent sm:w-40" />
       <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-20 bg-linear-to-l from-background via-background/80 to-transparent sm:w-40" />
-
-      <p className="mb-6 text-center text-xs font-semibold tracking-[0.22em] text-muted-foreground uppercase">
-        Every service under one roof
-      </p>
 
       <div className="space-y-4">
         <TickerRow items={SERVICE_TICKER} direction="forwards" duration="60s" />
@@ -98,17 +94,6 @@ export function ServiceTicker({ className }: { className?: string }) {
           direction="reverse"
           duration="75s"
         />
-      </div>
-
-      <div className="mx-auto mt-10 grid max-w-6xl gap-6 px-6 sm:grid-cols-2 lg:grid-cols-4">
-        {TRUST_ITEMS.map((item) => (
-          <div key={item.value} className="border-l-2 border-primary/40 pl-4">
-            <p className="text-sm font-bold text-foreground">{item.value}</p>
-            <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
-              {item.label}
-            </p>
-          </div>
-        ))}
       </div>
     </section>
   );

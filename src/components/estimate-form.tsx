@@ -1,6 +1,17 @@
+"use client";
+
+import { ArrowRightIcon, ClockIcon } from "lucide-react";
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { services } from "@/lib/services";
 import { formsubmitEndpoint, site } from "@/lib/site";
@@ -16,7 +27,7 @@ export function EstimateForm({
     <form
       action={formsubmitEndpoint}
       method="POST"
-      className="grid gap-4 sm:grid-cols-2"
+      className="grid gap-5 sm:grid-cols-2"
     >
       <input type="hidden" name="_next" value={nextUrl} />
       <input
@@ -40,7 +51,7 @@ export function EstimateForm({
           name="firstName"
           required
           autoComplete="given-name"
-          className="h-10"
+          className="h-11 focus-visible:ring-2 focus-visible:ring-primary"
         />
       </Field>
       <Field label="Last name" htmlFor="lastName">
@@ -49,7 +60,7 @@ export function EstimateForm({
           name="lastName"
           required
           autoComplete="family-name"
-          className="h-10"
+          className="h-11 focus-visible:ring-2 focus-visible:ring-primary"
         />
       </Field>
       <Field label="Email" htmlFor="email">
@@ -59,7 +70,7 @@ export function EstimateForm({
           type="email"
           required
           autoComplete="email"
-          className="h-10"
+          className="h-11 focus-visible:ring-2 focus-visible:ring-primary"
         />
       </Field>
       <Field label="Phone number" htmlFor="phone">
@@ -69,7 +80,7 @@ export function EstimateForm({
           type="tel"
           required
           autoComplete="tel"
-          className="h-10"
+          className="h-11 focus-visible:ring-2 focus-visible:ring-primary"
         />
       </Field>
       <Field label="Zip code" htmlFor="zip">
@@ -78,41 +89,47 @@ export function EstimateForm({
           name="zip"
           required
           autoComplete="postal-code"
-          className="h-10"
+          className="h-11 focus-visible:ring-2 focus-visible:ring-primary"
         />
       </Field>
-      <Field label="Service" htmlFor="service">
-        <select
-          id="service"
-          name="service"
-          required
-          defaultValue={defaultService ?? ""}
-          className="h-10 w-full rounded-lg border border-input bg-transparent px-2.5 text-sm dark:bg-input/30"
-        >
-          <option value="" disabled>
-            Choose a service
-          </option>
-          {services.map((service) => (
-            <option key={service.slug} value={service.formValue}>
-              {service.formValue}
-            </option>
-          ))}
-        </select>
+      <Field label="Service needed" htmlFor="service">
+        <Select name="service" defaultValue={defaultService ?? ""} required>
+          <SelectTrigger
+            id="service"
+            className="h-11 w-full focus-visible:ring-2 focus-visible:ring-primary"
+          >
+            <SelectValue placeholder="Choose a service" />
+          </SelectTrigger>
+          <SelectContent position="popper">
+            {services.map((service) => (
+              <SelectItem key={service.slug} value={service.formValue}>
+                {service.formValue}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
       </Field>
+
       <div className="grid gap-2 sm:col-span-2">
         <Label htmlFor="message">Message</Label>
         <Textarea
           id="message"
           name="message"
-          rows={5}
+          rows={4}
           placeholder="Tell us about the project, storm damage, or the rooms you want to change."
-          className="min-h-28"
+          className="min-h-24 focus-visible:ring-2 focus-visible:ring-primary"
         />
       </div>
+
       <div className="sm:col-span-2">
-        <Button type="submit" className="h-11 w-full px-6 sm:w-auto">
+        <Button type="submit" className="h-12 w-full px-6 text-base font-semibold">
           Request a free estimate
+          <ArrowRightIcon className="size-4" />
         </Button>
+        <p className="mt-3 flex items-center gap-1.5 text-xs text-muted-foreground">
+          <ClockIcon className="size-3.5 shrink-0" />
+          We respond within 1 business day — usually the same afternoon.
+        </p>
       </div>
     </form>
   );
