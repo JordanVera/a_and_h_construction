@@ -10,7 +10,7 @@ import { PageHero } from '@/components/page-hero';
 import { Section, SectionHeading } from '@/components/section';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { areas, featuredAreas } from '@/lib/areas';
+import { featuredAreas } from '@/lib/areas';
 import { site } from '@/lib/site';
 
 export const metadata: Metadata = {
@@ -33,28 +33,29 @@ export default function AreasPage() {
       <Section>
         <SectionHeading
           title="Communities we work in"
-          description="Dedicated pages for Spring and Hilshire Village. Everywhere else, request an estimate and we will confirm we cover your street."
+          description="Every city below has its own page with local content — neighborhoods we know, climate considerations, and what to expect from a project in your area."
         />
         <Stagger
           className="grid gap-3 sm:grid-cols-2 md:grid-cols-3"
           stagger={0.04}
         >
-          {areas.map((area) => (
-            <StaggerItem key={area.name}>
-              <Card size="sm" className="h-full">
+          {featuredAreas.map((area) => (
+            <StaggerItem key={area.slug}>
+              <Card className="h-full">
                 <CardHeader>
                   <CardTitle className="text-sm">{area.name}</CardTitle>
                 </CardHeader>
-                {area.slug ? (
-                  <CardContent>
-                    <Button asChild variant="outline" size="sm">
-                      <Link href={`/areas/${area.slug}`}>
-                        Local page
-                        <ArrowRightIcon data-icon="inline-end" />
-                      </Link>
-                    </Button>
-                  </CardContent>
-                ) : null}
+                <CardContent>
+                  <p className="mb-3 text-xs leading-relaxed text-muted-foreground line-clamp-2">
+                    {area.subheadline}
+                  </p>
+                  <Button asChild variant="outline" size="sm">
+                    <Link href={`/areas/${area.slug}`}>
+                      Local page
+                      <ArrowRightIcon data-icon="inline-end" />
+                    </Link>
+                  </Button>
+                </CardContent>
               </Card>
             </StaggerItem>
           ))}
@@ -65,24 +66,9 @@ export default function AreasPage() {
         <div className="grid items-center gap-10 lg:grid-cols-2">
           <div>
             <SectionHeading
-              title="Featured cities"
-              description="More local detail for Spring and Hilshire Village homeowners."
+              title="Humble is home base"
+              description="Jose and the crew have been based in Humble since 2016. Every community on this page is a regular part of our work — not an occasional drive."
             />
-            <ul className="space-y-4">
-              {featuredAreas.map((area) => (
-                <li key={area.slug}>
-                  <Link
-                    href={`/areas/${area.slug}`}
-                    className="text-lg font-medium hover:text-primary"
-                  >
-                    {area.name}
-                  </Link>
-                  <p className="mt-1 text-sm text-muted-foreground">
-                    {area.intro}
-                  </p>
-                </li>
-              ))}
-            </ul>
           </div>
           <FadeIn
             delay={0.1}
