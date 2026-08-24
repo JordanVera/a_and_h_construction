@@ -39,6 +39,8 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
+  --color-warm: var(--warm);
+  --color-warm-foreground: var(--warm-foreground);
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
@@ -72,6 +74,8 @@
   --muted-foreground: oklch(0.708 0 0);
   --accent: oklch(0.269 0 0);
   --accent-foreground: oklch(0.985 0 0);
+  --warm: #f59e0b;
+  --warm-foreground: #000000;
   --destructive: oklch(0.704 0.191 22.216);
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
@@ -81,7 +85,7 @@
   --chart-3: oklch(0.439 0 0);
   --chart-4: oklch(0.371 0 0);
   --chart-5: oklch(0.269 0 0);
-  --radius: 0.625rem;
+  --radius: 0.75rem;
   --sidebar: oklch(0.205 0 0);
   --sidebar-foreground: oklch(0.985 0 0);
   --sidebar-primary: #0480ff;
@@ -101,5 +105,23 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .glow-primary {
+    box-shadow: 0 0 0 1px oklch(1 0 0 / 8%), 0 4px 32px -4px #0480ff55;
+  }
+  .glow-primary-hover:hover {
+    box-shadow: 0 0 0 1px oklch(1 0 0 / 10%), 0 8px 40px -4px #0480ff77;
+  }
+  .stripe-pattern {
+    background-image: repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 12px,
+      oklch(1 0 0 / 4%) 12px,
+      oklch(1 0 0 / 4%) 13px
+    );
   }
 }

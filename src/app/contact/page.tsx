@@ -61,15 +61,6 @@ export default function ContactPage() {
                 </a>
               </CardContent>
             </Card>
-            <div className="relative aspect-square overflow-hidden rounded-xl ring-1 ring-foreground/10">
-              <Image
-                src="/images/map.webp"
-                alt="Map of the Humble and Houston service area"
-                fill
-                sizes="(min-width: 1024px) 40vw, 100vw"
-                className="object-cover"
-              />
-            </div>
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
@@ -82,6 +73,15 @@ export default function ContactPage() {
                 <p>{site.hours.weekend}</p>
               </CardContent>
             </Card>
+            <div className="relative aspect-square overflow-hidden rounded-xl ring-1 ring-foreground/10">
+              <Image
+                src="/images/map.webp"
+                alt="Map of the Humble and Houston service area"
+                fill
+                sizes="(min-width: 1024px) 40vw, 100vw"
+                className="object-cover"
+              />
+            </div>
           </FadeIn>
           <FadeIn
             delay={0.1}
