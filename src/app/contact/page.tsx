@@ -1,15 +1,16 @@
-import type { Metadata } from "next";
-import { ClockIcon, MapPinIcon, PhoneIcon } from "lucide-react";
+import type { Metadata } from 'next';
+import Image from 'next/image';
+import { ClockIcon, MapPinIcon, PhoneIcon } from 'lucide-react';
 
-import { EstimateForm } from "@/components/estimate-form";
-import { FadeIn } from "@/components/motion";
-import { PageHero } from "@/components/page-hero";
-import { Section } from "@/components/section";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { site } from "@/lib/site";
+import { EstimateForm } from '@/components/estimate-form';
+import { FadeIn } from '@/components/motion';
+import { PageHero } from '@/components/page-hero';
+import { Section } from '@/components/section';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { site } from '@/lib/site';
 
 export const metadata: Metadata = {
-  title: "Contact Us",
+  title: 'Contact Us',
   description: `Book a free inspection and estimate with ${site.name} in ${site.region}. Call ${site.phone}.`,
 };
 
@@ -33,7 +34,10 @@ export default function ContactPage() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <a href={site.phoneHref} className="text-lg font-medium hover:text-primary">
+                <a
+                  href={site.phoneHref}
+                  className="text-lg font-medium hover:text-primary"
+                >
                   {site.phone}
                 </a>
               </CardContent>
@@ -57,6 +61,15 @@ export default function ContactPage() {
                 </a>
               </CardContent>
             </Card>
+            <div className="relative aspect-square overflow-hidden rounded-xl ring-1 ring-foreground/10">
+              <Image
+                src="/images/map.webp"
+                alt="Map of the Humble and Houston service area"
+                fill
+                sizes="(min-width: 1024px) 40vw, 100vw"
+                className="object-cover"
+              />
+            </div>
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
@@ -70,7 +83,10 @@ export default function ContactPage() {
               </CardContent>
             </Card>
           </FadeIn>
-          <FadeIn delay={0.1} className="rounded-xl border border-border bg-card p-6 md:p-8">
+          <FadeIn
+            delay={0.1}
+            className="rounded-xl border border-border bg-card p-6 md:p-8"
+          >
             <h2 className="mb-6 font-heading text-xl font-semibold">
               Book a free inspection and estimate
             </h2>

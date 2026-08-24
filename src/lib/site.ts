@@ -34,6 +34,7 @@ export const site = {
   },
   credentials: ["Licensed", "Insured", "Bonded"] as const,
   logo: "/logos/logo-white.png",
+  featurableWidgetId: process.env.NEXT_PUBLIC_FEATURABLE_WIDGET_ID ?? "",
 } as const;
 
 export const formsubmitEndpoint = `https://formsubmit.co/${site.email}`;

@@ -16,6 +16,7 @@ import { PageHero } from '@/components/page-hero';
 import { Reviews } from '@/components/reviews';
 import { Section, SectionHeading } from '@/components/section';
 import { ServiceCard } from '@/components/service-card';
+import { ServiceTicker } from '@/components/service-ticker';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -90,27 +91,7 @@ export default function HomePage() {
         </Button>
       </PageHero>
 
-      <Section className="py-8 md:py-10">
-        <Stagger className="flex flex-wrap items-center justify-center gap-2">
-          {site.credentials.map((item) => (
-            <StaggerItem key={item}>
-              <Badge variant="secondary" className="px-3 py-1">
-                {item}
-              </Badge>
-            </StaggerItem>
-          ))}
-          <StaggerItem>
-            <Badge variant="secondary" className="px-3 py-1">
-              Free estimates
-            </Badge>
-          </StaggerItem>
-          <StaggerItem>
-            <Badge variant="secondary" className="px-3 py-1">
-              Serving the Houston area
-            </Badge>
-          </StaggerItem>
-        </Stagger>
-      </Section>
+      <ServiceTicker />
 
       <Section>
         <div className="grid items-center gap-10 lg:grid-cols-2">
@@ -126,7 +107,10 @@ export default function HomePage() {
               </Button>
             </FadeIn>
           </div>
-          <FadeIn delay={0.12} className="relative aspect-4/3 overflow-hidden rounded-xl ring-1 ring-foreground/10">
+          <FadeIn
+            delay={0.12}
+            className="relative aspect-4/3 overflow-hidden rounded-xl ring-1 ring-foreground/10"
+          >
             <Image
               src="/images/home-media.webp"
               alt="Finished home exterior by A & H Construction"
@@ -204,7 +188,10 @@ export default function HomePage() {
               )}
             </Stagger>
           </div>
-          <FadeIn delay={0.1} className="relative aspect-square overflow-hidden rounded-xl ring-1 ring-foreground/10">
+          <FadeIn
+            delay={0.1}
+            className="relative aspect-square overflow-hidden rounded-xl ring-1 ring-foreground/10"
+          >
             <Image
               src="/images/map.webp"
               alt="Map of communities served around Humble, Texas"
